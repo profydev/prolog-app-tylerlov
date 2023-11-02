@@ -4,6 +4,7 @@
     "numIssues": 73,
     "numEvents24h": 7,
     "status": "error",
+    "displayedStatus": "Critical",
     "name": "Frontend - Web Test",
     "language": "react"
   },
@@ -12,6 +13,7 @@
     "numIssues": 25,
     "numEvents24h": 5,
     "status": "warning",
+    "displayedStatus": "Warning",
     "name": "Backend",
     "language": "node"
   },
@@ -20,6 +22,7 @@
     "numIssues": 0,
     "numEvents24h": 0,
     "status": "info",
+    "displayedStatus": "Stable",
     "name": "ML Service",
     "language": "python"
   }
