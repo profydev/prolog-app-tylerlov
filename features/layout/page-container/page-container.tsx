@@ -25,7 +25,7 @@ export function PageContainer({ children, title, info }: PageContainerProps) {
         <div className={styles.contentContainer}>
           <h1 className={styles.title}>{title}</h1>
           <div className={styles.info}>{info}</div>
-          {children}
+          <div className={styles.cards}>{children}</div>
         </div>
         <Footer />
       </main>
