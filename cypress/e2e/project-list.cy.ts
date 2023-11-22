@@ -8,7 +8,6 @@ describe("Project List", () => {
       delay: 1000, // delay the response by 1000ms
     }).as("getProjects");
 
-    // Open projects page
     cy.visit("http://localhost:3000/dashboard");
   });
 
@@ -17,15 +16,28 @@ describe("Project List", () => {
       cy.viewport(1025, 900);
     });
 
+    it("displays an error message when data retrieval fails", () => {
+      // Intercept the GET request and force it to fail
+      cy.intercept("GET", "https://prolog-api.profy.dev/project", {
+        statusCode: 400,
+        body: "Bad Request",
+      }).as("getProjectsFail");
+
+      cy.visit("http://localhost:3000/dashboard");
+      cy.wait("@getProjectsFail");
+
+      cy.wait(7000);
+
+      cy.get('[data-testid="error-fetching-project-data"]').should("exist");
+    });
+
     it("shows a loading state before rendering the projects", () => {
-      // Check if the LoadingAnimation component is rendered
       cy.get('[data-testid="loading-spinner"]').should("exist");
     });
 
     it("renders the projects", () => {
       const languageNames = ["React", "Node.js", "Python"];
 
-      // Check if the LoadingAnimation component is not rendered anymore
       cy.get('[data-testid="loading-spinner"]').should("not.exist");
 
       cy.wait("@getProjects");
@@ -40,7 +52,6 @@ describe("Project List", () => {
           cy.wrap($el).contains(languageNames[index]);
           cy.wrap($el).contains(mockProjects[index].numIssues);
           cy.wrap($el).contains(mockProjects[index].numEvents24h);
-          //cy.wrap($el).contains(capitalize(mockProjects[index].displayedStatus));
           cy.wrap($el)
             .find("a")
             .should("have.attr", "href", "/dashboard/issues");
