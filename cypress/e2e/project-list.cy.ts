@@ -38,6 +38,7 @@ describe("Project List", () => {
     it("renders the projects", () => {
       const languageNames = ["React", "Node.js", "Python"];
 
+      // Check if the LoadingAnimation component is not rendered anymore
       cy.get('[data-testid="loading-spinner"]').should("not.exist");
 
       cy.wait("@getProjects");
@@ -52,6 +53,7 @@ describe("Project List", () => {
           cy.wrap($el).contains(languageNames[index]);
           cy.wrap($el).contains(mockProjects[index].numIssues);
           cy.wrap($el).contains(mockProjects[index].numEvents24h);
+          cy.wrap($el).contains(mockProjects[index].displayedStatus);
           cy.wrap($el)
             .find("a")
             .should("have.attr", "href", "/dashboard/issues");
