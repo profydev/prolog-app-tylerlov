@@ -16,6 +16,7 @@ describe("Project List", () => {
       cy.viewport(1025, 900);
     });
 
+
     it("displays an error message when data retrieval fails", () => {
       // Intercept the GET request and force it to fail
       cy.intercept("GET", "https://prolog-api.profy.dev/project", {
@@ -38,6 +39,7 @@ describe("Project List", () => {
     it("renders the projects", () => {
       const languageNames = ["React", "Node.js", "Python"];
 
+      // Check if the LoadingAnimation component is not rendered anymore
       cy.get('[data-testid="loading-spinner"]').should("not.exist");
 
       cy.wait("@getProjects");
@@ -52,6 +54,7 @@ describe("Project List", () => {
           cy.wrap($el).contains(languageNames[index]);
           cy.wrap($el).contains(mockProjects[index].numIssues);
           cy.wrap($el).contains(mockProjects[index].numEvents24h);
+          cy.wrap($el).contains(mockProjects[index].displayedStatus);
           cy.wrap($el)
             .find("a")
             .should("have.attr", "href", "/dashboard/issues");

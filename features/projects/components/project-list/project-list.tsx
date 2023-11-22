@@ -4,6 +4,7 @@ import styles from "./project-list.module.scss";
 import { LoadingAnimation } from "../loading-anim";
 import { ProjectError } from "../project-error";
 
+
 export function ProjectList() {
   const { data, isLoading, isError } = useGetProjects();
 

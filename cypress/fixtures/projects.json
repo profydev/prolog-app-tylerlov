@@ -12,6 +12,7 @@
     "numIssues": 25,
     "numEvents24h": 5,
     "status": "warning",
+    "displayedStatus": "Warning",
     "name": "Backend",
     "language": "node"
   },
@@ -19,7 +20,8 @@
     "id": "9aa6a101-2c92-4797-b497-b31b2cb4c94b",
     "numIssues": 0,
     "numEvents24h": 0,
-    "status": "stable",
+    "status": "info",
+    "displayedStatus": "Stable",
     "name": "ML Service",
     "language": "python"
   }
