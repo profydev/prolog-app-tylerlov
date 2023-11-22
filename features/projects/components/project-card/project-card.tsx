@@ -22,9 +22,9 @@ const statusColors = {
 };
 
 const statusMappings = {
-  [ProjectStatus.info]: "stable",
-  [ProjectStatus.warning]: "warning",
-  [ProjectStatus.error]: "critical",
+  [ProjectStatus.info]: "Stable",
+  [ProjectStatus.warning]: "Warning",
+  [ProjectStatus.error]: "Critical",
 };
 
 export function ProjectCard({ project }: ProjectCardProps) {
