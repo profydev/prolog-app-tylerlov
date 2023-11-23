@@ -1,0 +1,42 @@
+.alert {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  gap: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--error-300, #fda29b);
+  background: var(--error-25, #fffbfa);
+  color: #b42318;
+}
+
+.icons {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--error-700, #b42318);
+}
+
+.message {
+  flex-grow: 1;
+  display: flex;
+  color: var(--error-700, #b42318);
+  justify-content: left;
+
+  /* Text sm/Medium */
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 142.857% */
+}
+
+.retry {
+  color: var(--error-700, #b42318);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: none;
+  background: none;
+}
