@@ -4,6 +4,46 @@
 @use "@styles/breakpoint";
 @use "@styles/misc";
 
+@media (width <= 48em) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: stretch;
+  }
+
+  .content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer {
+    background: var(--gray-50, #f9fafb);
+    height: auto; // Adjust the height to auto
+    padding: 50px;
+  }
+
+  .footerLinks {
+    flex-direction: row; // Change the direction to row
+    justify-content: center; // Center the links
+  }
+
+  .logoWrap {
+    order: 1; // Place the logo below the links
+    display: flex;
+    justify-content: center; // Center the logo horizontally
+    align-items: center; // Center the logo vertically
+    align-self: center; // Override align-items for the parent
+  }
+
+  .versionNumber {
+    order: 2; // Place the version number below the logo
+    display: flex;
+    justify-content: center; // Center the version number horizontally
+    align-items: center; // Center the version number vertically
+  }
+}
+
 .footer {
   background: var(--gray-50, #f9fafb);
   display: flex;
@@ -50,13 +90,15 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  padding: 24px;
 }
 
 .logoWrap {
   display: flex;
-  width: 160px;
+  width: 23px; /* Adjust this value as needed */
+  height: auto; /* This will maintain the aspect ratio of the logo */
   flex-direction: column;
-  align-items: flex-end;
+  padding: 24px;
 }
 
 .link {
@@ -65,5 +107,5 @@
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
-  line-height: 24px; /* 150% */
+  line-height: 24px;
 }
