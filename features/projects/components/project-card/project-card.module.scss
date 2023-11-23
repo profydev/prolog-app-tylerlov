@@ -11,6 +11,7 @@
     0 1px 3px rgb(16 24 40 / 10%),
     0 1px 2px rgb(16 24 40 / 6%);
   border-radius: 8px;
+  max-width: 389px;
 }
 
 .topContainer {
@@ -66,7 +67,7 @@
 }
 
 .status {
-  height: 2.75rem;
+  height: 2.25rem;
   margin-top: auto;
   margin-left: space.$s6;
   display: flex;

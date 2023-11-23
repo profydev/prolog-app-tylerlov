@@ -1,17 +1,18 @@
 import { ProjectCard } from "../project-card";
 import { useGetProjects } from "../../api/use-get-projects";
 import styles from "./project-list.module.scss";
+import { LoadingAnimation } from "../loading-anim";
+import { ProjectError } from "../project-error";
 
 export function ProjectList() {
-  const { data, isLoading, isError, error } = useGetProjects();
+  const { data, isLoading, isError } = useGetProjects();
 
   if (isLoading) {
-    return <div>Loading</div>;
+    return <LoadingAnimation />; // replace this with your loading animation component
   }
 
   if (isError) {
-    console.error(error);
-    return <div>Error: {error.message}</div>;
+    return <ProjectError />;
   }
 
   return (

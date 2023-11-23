@@ -22,7 +22,7 @@
 }
 
 .contentContainer {
-  min-height: calc(100vh - 2 * space.$s8 - misc.$header-height);
+  min-height: calc(80vh - 2 * space.$s8 - misc.$header-height);
   margin-top: misc.$header-height;
   padding: space.$s8 space.$s3;
   background: white;
@@ -30,19 +30,19 @@
   @media (min-width: breakpoint.$desktop) {
     min-height: calc(100vh - space.$s3 - 2 * space.$s8 - misc.$footer-height);
     margin-top: space.$s3;
-    padding: space.$s8;
+    padding: space.$s6;
     border-top-left-radius: space.$s10;
   }
 }
 
 .title {
-  margin: space.$s0 space.$s0 space.$s1;
+  margin: space.$s2 space.$s2 space.$s1;
   color: color.$gray-900;
   font: font.$display-sm-medium;
 }
 
 .info {
-  margin-bottom: space.$s8;
+  margin: space.$s0 space.$s2 space.$s8;
   color: color.$gray-500;
   font: font.$text-md-regular;
 }
