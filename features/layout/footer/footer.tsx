@@ -1,5 +1,6 @@
 import styles from "./footer.module.scss";
 import packageJson from "package.json";
+import Image from "next/image"; // Import the Image component
 
 export function Footer() {
   return (
@@ -32,10 +33,12 @@ export function Footer() {
             </div>
           </div>
           <div className={styles.logoWrap}>
-            <img
+            <Image
               src={"/icons/logo-small.svg"}
               alt="logo"
               className={styles.logo}
+              width={23}
+              height={33}
             />
           </div>
         </div>
