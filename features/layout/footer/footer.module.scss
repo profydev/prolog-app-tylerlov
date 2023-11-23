@@ -20,7 +20,7 @@
   .footer {
     background: var(--gray-50, #f9fafb);
     height: auto; // Adjust the height to auto
-    padding: 50px;
+    padding: 20px;
   }
 
   .footerLinks {
@@ -47,7 +47,7 @@
 .footer {
   background: var(--gray-50, #f9fafb);
   display: flex;
-  height: 60px;
+  height: auto;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -76,7 +76,7 @@
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  line-height: 24px; /* 150% */
+  line-height: 24px;
 }
 
 .footerLinks {
@@ -90,7 +90,8 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 24px;
+
+  /* padding: 24px; */
 }
 
 .logoWrap {

@@ -7,7 +7,7 @@ export function Footer() {
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={styles.versionNumber}>
-            <p>{packageJson.version}</p>
+            <p> Version: {packageJson.version}</p>
           </div>
           <div className={styles.footerLinks}>
             <div className={styles.footerLink}>
