@@ -7,21 +7,41 @@
 .headerLinks {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   gap: 24px;
   color: color.$gray-500;
-
-  @media (min-width: breakpoint.$desktop) {
-    margin-right: 136px;
-  }
 
   @media (max-width: breakpoint.$desktop) {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     gap: 24px;
     color: color.$gray-500;
   }
+
+  @media (width <= 375px) {
+    display: none;
+  }
+}
+
+.burgerIcon {
+  display: none;
+
+  @media (width <= 376px) {
+    font-size: x-large;
+    display: block;
+    color: #344054;
+  }
+}
+
+.burgerMenu {
+  display: none;
+  flex-direction: column;
+  padding: 100px 0 0;
+}
+
+.burgerMenu.open {
+  display: flex;
 }
 
 .container {
@@ -72,4 +92,10 @@
   font-style: normal;
   font-weight: 500;
   line-height: 24px;
+}
+
+.openDashboardButton {
+  @media (width <= 375px) {
+    display: none;
+  }
 }

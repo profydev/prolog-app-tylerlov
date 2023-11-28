@@ -1,23 +1,48 @@
+@use "@styles/color";
+@use "@styles/font";
+@use "@styles/space";
+@use "@styles/breakpoint";
+@use "@styles/misc";
+
+.headerContainer {
+  background: white;
+}
+
+.dashboardButton {
+  @media (width <= 376px) {
+    display: none;
+  }
+}
+
 .logo {
   width: 118px;
   height: 33px;
 }
 
 .header {
-  width: 100%;
+  margin: auto;
+  width: 85%;
   height: 80px;
   padding: 0 2rem;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: white;
+
+  @media (width <= 376px) {
+    width: 100%;
+    padding: 1em;
+  }
+}
+
+.heroSection {
+  background: var(--gray-50, #f9fafb);
 }
 
 .headingContainer {
-  padding: 64px 0px;
+  padding: 64px 0;
   display: flex;
-  flex-direction: column; /* Add this line */
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -34,13 +59,28 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 30px;
+  margin: 0;
+
+  @media (width <= 376px) {
+    color: var(--gray-900, #101828);
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 44px;
+    letter-spacing: -0.72px;
+  }
 }
+
 .supportingTextWrap {
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .supportingText {
   width: 648px;
   color: var(--gray-500, #667085);
@@ -50,69 +90,272 @@
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
-  line-height: 30px; /* 150% */
+  line-height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (width <= 376px) {
+    width: 90%;
+    color: var(--gray-500, #667085);
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+  }
 }
 
 .computer {
   width: 753.676px;
   height: 445.894px;
   flex-shrink: 0;
-  padding: 0 224px 120px 224px;
+  padding: 50px 224px 120px;
+
+  @media (width <= 376px) {
+    width: 343px;
+    height: 200.307px;
+    padding-bottom: 0;
+  }
 }
 
 .textSmall {
   color: var(--gray-500, #667085);
   text-align: center;
   align-self: stretch;
-
-  /* Text md/Medium */
   font-family: Inter, sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
-  line-height: 24px; /* 150% */
+  line-height: 24px;
 }
 
 .companyContainer {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  display: flex;
-  width: 1280px;
-  padding: 0px 32px;
+  padding: 0 100px;
   align-items: flex-start;
   gap: 32px;
   flex-shrink: 0;
+  padding-bottom: 100px;
+
+  @media (width <= 376px) {
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+  }
+}
+
+.companyLogo {
+  @media (width <= 376px) {
+    transform: scale(0.8);
+    display: flex;
+    align-items: center;
+  }
+}
+
+.companyLogoMobileOnly {
+  display: none;
+
+  @media (width <= 376px) {
+    transform: scale(0.8);
+    display: flex;
+    align-items: center;
+  }
+}
+
+.companyMobileBackground {
+  @media (width <= 376px) {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: white;
+  }
 }
 
 .testimonialHeading {
-  padding: 128px;
+  padding: 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 0;
+
+  @media (width <= 376px) {
+    color: var(--gray-900, #101828);
+    text-align: center;
+    padding: 10px;
+    font-family: Inter, sans-serif;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 44px;
+    letter-spacing: -0.72px;
+    background-color: var(--gray-50, #f9fafb);
+  }
 }
 
 .testimonialContainer {
   display: flex;
-  width: 105%; // Adjust the width to 100% to use the full container width
-  justify-content: space-between; // Distribute cards evenly across the container
-  flex-wrap: wrap; // Allow the items to wrap onto multiple lines
+  width: 95%;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 50px;
+
+  @media (width <= 375px) {
+    flex-direction: column;
+    width: 100%;
+  }
 }
 
 .testimonial {
-  width: calc(
-    (85% - 100px) / 3
-  ); // Calculate the width for 3 cards in a row considering the gap
-  margin-bottom: 2rem;
+  width: calc((85% - 100px) / 3);
+  height: 340px;
   padding: 40px 24px;
   flex-direction: column;
   justify-content: space-between;
   align-self: stretch;
   border-radius: 16px;
   background: var(--primary-50, #f9f5ff);
+  display: flex;
+  align-items: center;
+
+  @media (width <= 376px) {
+    width: 90%;
+    display: flex;
+    padding: 64px 24px;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    align-self: stretch;
+  }
+}
+
+.testimonialOffColor {
+  width: calc((85% - 100px) / 3);
+  height: 340px;
+  padding: 40px 24px;
+  flex-direction: column;
+  justify-content: space-between;
+  align-self: stretch;
+  border-radius: 16px;
+  background: var(--gray-50, #f9fafb);
+  display: flex;
+  align-items: center;
+
+  @media (width <= 376px) {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+.testimonialCategory {
+  color: var(--primary-700, #6941c6);
+  text-align: center;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.testimonialQuote {
+  color: var(--primary-900, #42307d);
+  text-align: center;
+  font-family: Inter, sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px;
+  margin-top: 0;
+
+  @media (width <= 376px) {
+    align-self: stretch;
+    color: var(--primary-900, #42307d);
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 32px;
+  }
+}
+
+.testimonialQuoteOffset {
+  color: var(--primary-900, #42307d);
+  text-align: center;
+  font-family: Inter, sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px;
+  margin-top: -30px;
+
+  @media (width <= 376px) {
+    align-self: stretch;
+    color: var(--primary-900, #42307d);
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 32px;
+  }
+}
+
+.testimonialQuoteOffColor {
+  color: var(--primary-900, #42307d);
+  text-align: center;
+  font-family: Inter, sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px;
+  margin-top: 0;
+
+  @media (width <= 376px) {
+    align-self: stretch;
+    color: var(--primary-900, #42307d);
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 32px;
+  }
+}
+
+.testimonialAvatarAndText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  align-self: stretch;
+}
+
+.testimonialName {
+  color: var(--primary-900, #42307d);
+  text-align: center;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  margin-top: 10;
+  margin-bottom: 0;
+}
+
+.testimonialRole {
+  color: var(--primary-700, #6941c6);
+  text-align: center;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 0;
 }
 
 .avatarContainer {
@@ -124,7 +367,7 @@
 .contactButton {
   display: flex;
   align-items: flex-start;
-  position: fixed; // Change this line
+  position: fixed;
   bottom: 2.5rem;
   right: 2.5rem;
   padding: 1rem;
@@ -136,5 +379,35 @@
 
   &:hover {
     background: #6941c6;
+  }
+}
+
+.burgerIcon {
+  display: none;
+}
+
+@media (width <= 375px) {
+  .burgerIcon {
+    display: block;
+  }
+
+  .headerLinks {
+    display: none;
+  }
+}
+
+.burgerMenu {
+  display: none;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.burgerMenu.open {
+  display: flex;
+}
+
+@media (width <= 375px) {
+  .openDashboardButton {
+    display: none;
   }
 }
