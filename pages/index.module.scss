@@ -15,15 +15,15 @@
 }
 
 .logo {
-  width: 118px;
-  height: 33px;
+  width: 7.375em;
+  height: 2.0625em;
 }
 
 .header {
   margin: auto;
-  width: 85%;
-  height: 80px;
-  padding: 0 2rem;
+  width: 90%;
+  height: 5em;
+  padding: 0 2em;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
@@ -40,11 +40,15 @@
 }
 
 .headingContainer {
-  padding: 64px 0;
+  padding: 4em 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media (width <= 376px) {
+    padding: 1.5em 0;
+  }
 }
 
 .headingText {
@@ -115,8 +119,8 @@
 
   @media (width <= 376px) {
     width: 343px;
-    height: 200.307px;
-    padding-bottom: 0;
+    height: 200px;
+    padding-bottom: 35px;
   }
 }
 
@@ -129,6 +133,10 @@
   font-style: normal;
   font-weight: 500;
   line-height: 24px;
+
+  @media (width <= 376px) {
+    padding: 0;
+  }
 }
 
 .companyContainer {
@@ -141,10 +149,13 @@
   padding-bottom: 100px;
 
   @media (width <= 376px) {
+    justify-content: right;
+    transform: scale(0.9);
     padding: 0;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 10px;
+    grid-gap: 25px;
+    padding-bottom: 20px;
   }
 }
 
@@ -184,7 +195,7 @@
   @media (width <= 376px) {
     color: var(--gray-900, #101828);
     text-align: center;
-    padding: 10px;
+    padding: 18px;
     font-family: Inter, sans-serif;
     font-size: 36px;
     font-style: normal;
@@ -202,9 +213,13 @@
   flex-wrap: wrap;
   padding: 50px;
 
-  @media (width <= 375px) {
+  @media (width <= 376px) {
+    align-items: center;
+    justify-content: center;
+    margin-right: 45px;
     flex-direction: column;
-    width: 100%;
+    width: 90%;
+    padding: 2.5em;
   }
 }
 
@@ -221,12 +236,10 @@
   align-items: center;
 
   @media (width <= 376px) {
-    width: 90%;
+    width: 100%;
     display: flex;
-    padding: 64px 24px;
     flex-direction: column;
     align-items: center;
-    gap: 24px;
     align-self: stretch;
   }
 }
@@ -259,6 +272,11 @@
   line-height: 20px;
   margin-top: 0;
   margin-bottom: 0;
+
+  @media (width <= 376px) {
+    padding: 0;
+    margin: 0;
+  }
 }
 
 .testimonialQuote {
@@ -294,7 +312,7 @@
   margin-top: -30px;
 
   @media (width <= 376px) {
-    align-self: stretch;
+    width: 110%;
     color: var(--primary-900, #42307d);
     text-align: center;
     font-family: Inter, sans-serif;
@@ -316,7 +334,7 @@
   margin-top: 0;
 
   @media (width <= 376px) {
-    align-self: stretch;
+    width: 110%;
     color: var(--primary-900, #42307d);
     text-align: center;
     font-family: Inter, sans-serif;
@@ -368,9 +386,9 @@
   display: flex;
   align-items: flex-start;
   position: fixed;
-  bottom: 2.5rem;
-  right: 2.5rem;
-  padding: 1rem;
+  bottom: 2.5em;
+  right: 2.5em;
+  padding: 1em;
   background: #7f56d9;
   border-radius: 50%;
   box-shadow: 0 1px 2px rgb(16 24 40 / 5%);
@@ -386,7 +404,7 @@
   display: none;
 }
 
-@media (width <= 375px) {
+@media (width <= 376px) {
   .burgerIcon {
     display: block;
   }
@@ -406,7 +424,7 @@
   display: flex;
 }
 
-@media (width <= 375px) {
+@media (width <= 376px) {
   .openDashboardButton {
     display: none;
   }
