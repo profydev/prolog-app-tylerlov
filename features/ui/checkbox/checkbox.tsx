@@ -1,9 +1,4 @@
-import React, {
-  ButtonHTMLAttributes,
-  useEffect,
-  useRef,
-  CSSProperties,
-} from "react";
+import { useRef, useEffect } from "react";
 import classNames from "classnames";
 import styles from "./checkbox.module.scss";
 
@@ -12,74 +7,46 @@ export enum CheckboxSize {
   medium = "medium",
 }
 
-export enum CheckboxState {
-  default = "default",
-  disabled = "disabled",
-  indeterminate = "indeterminate",
-}
-
-export interface CustomCSS extends CSSProperties {
-  "--url-img": string;
-  "--url-img-indeterminate": string;
-}
-
-type CheckboxProps = {
-  label?: string;
-  size?: CheckboxSize;
-  state?: CheckboxState;
-  name?: string;
-  checked?: boolean;
-};
-
 export function Checkbox({
-  label,
+  label = "",
+  checked = false,
+  indeterminate = false,
+  disabled = true,
   size = CheckboxSize.small,
-  state = CheckboxState.default,
-  name = "checkbox",
-  checked,
   ...props
-}: CheckboxProps & ButtonHTMLAttributes<HTMLInputElement>) {
-  const checkboxRef = useRef<HTMLInputElement>(null);
+}) {
+  const classes = classNames(
+    styles.checkbox,
+    props.className,
+    styles[size],
+    disabled ? styles.disabled : "",
+  );
 
-  const checkboxImgUrl = {
-    "--url-img-indeterminate":
-      size === CheckboxSize.small
-        ? state !== CheckboxState.disabled
-          ? "url('/icons/check-partial-small.svg')"
-          : "url('/icons/check-partial-small-disabled.svg')"
-        : state !== CheckboxState.disabled
-        ? "url('/icons/check-partial-medium.svg')"
-        : "url('/icons/check-partial-medium-disabled.svg')",
-
-    "--url-img":
-      size === CheckboxSize.small
-        ? state !== CheckboxState.disabled
-          ? "url('/icons/check-small.svg')"
-          : "url('/icons/check-small-disabled.svg')"
-        : state !== CheckboxState.disabled
-        ? "url('/icons/check-medium.svg')"
-        : "url('/icons/check-medium-disabled.svg')",
-  } as CustomCSS;
+  const checkboxRef = useRef() as React.MutableRefObject<HTMLInputElement>;
+  const checkedRef = useRef(checked);
 
   useEffect(() => {
-    if (checkboxRef.current) {
-      checkboxRef.current.indeterminate = state === CheckboxState.indeterminate;
+    const isCheckedAndIndeterminate = checked && indeterminate;
+    const checkbox = checkboxRef.current;
+
+    if (isCheckedAndIndeterminate) {
+      checkedRef.current = false;
+      checkbox.checked = checkedRef.current;
+    } else {
+      checkbox.checked = checked;
     }
-  }, [state]);
+
+    checkbox.indeterminate = indeterminate;
+  }, [indeterminate, checked]);
 
   return (
-    <label
-      className={classNames(styles.customLabel, styles[size], styles[state])}
-    >
+    <label className={classes}>
       <input
-        {...props}
         type="checkbox"
-        className={classNames(styles.customInput, styles[size], styles[state])}
-        name={name}
-        style={checkboxImgUrl}
-        disabled={state === CheckboxState.disabled}
+        defaultChecked={checked}
+        disabled={disabled}
         ref={checkboxRef}
-        checked={checked}
+        {...props}
       />
       {label}
     </label>
