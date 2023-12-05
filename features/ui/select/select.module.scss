@@ -1,0 +1,74 @@
+@use "@styles/color";
+@use "@styles/font";
+@use "@styles/space";
+
+.selectContainer {
+  display: flex;
+  align-items: center;
+}
+
+.selectLabel {
+  margin-right: 10px; // adjust as needed
+}
+
+.selectWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.selectMessages {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.selectControl {
+  display: flex;
+  width: 320px;
+  height: 44px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  background-color: white;
+
+  &:focus {
+    box-shadow: 0 0 0 1px blue;
+  }
+
+  &.selectControlIsDisabled {
+    border-radius: 8px;
+    border: 1px solid var(--gray-300, #d0d5dd);
+    background: var(--gray-50, #f9fafb);
+
+    /* Shadow/xs */
+    box-shadow: 0 1px 2px 0 rgb(16 24 40 / 5%);
+    color: var(--gray-500, #667085);
+
+    /* Text md/Normal */
+    font-family: Inter, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px; /* 150% */
+  }
+
+  &.selectControlIsFocused {
+    box-shadow: 0 0 0 1px blue;
+  }
+}
+
+.selectOptionIsSelected {
+  span {
+    color: green;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.checkmark {
+  // Need to align this properly
+  padding-right: 50px;
+}
