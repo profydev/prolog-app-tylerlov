@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import classNames from "classnames";
 import styles from "./checkbox.module.scss";
 
@@ -7,6 +7,15 @@ export enum CheckboxSize {
   medium = "medium",
 }
 
+type CheckboxProps = {
+  label?: string;
+  checked?: boolean;
+  indeterminate?: boolean;
+  disabled?: boolean;
+  size?: CheckboxSize;
+  className?: string;
+};
+
 export function Checkbox({
   label = "",
   checked = false,
@@ -14,7 +23,7 @@ export function Checkbox({
   disabled = true,
   size = CheckboxSize.small,
   ...props
-}) {
+}: CheckboxProps) {
   const classes = classNames(
     styles.checkbox,
     props.className,
@@ -23,29 +32,30 @@ export function Checkbox({
   );
 
   const checkboxRef = useRef() as React.MutableRefObject<HTMLInputElement>;
-  const checkedRef = useRef(checked);
+  const [isChecked, setIsChecked] = useState(checked);
 
   useEffect(() => {
-    const isCheckedAndIndeterminate = checked && indeterminate;
+    const isCheckedAndIndeterminate = isChecked && indeterminate;
     const checkbox = checkboxRef.current;
 
     if (isCheckedAndIndeterminate) {
-      checkedRef.current = false;
-      checkbox.checked = checkedRef.current;
+      setIsChecked(false);
+      checkbox.checked = isChecked;
     } else {
-      checkbox.checked = checked;
+      checkbox.checked = isChecked;
     }
 
     checkbox.indeterminate = indeterminate;
-  }, [indeterminate, checked]);
+  }, [indeterminate, isChecked]);
 
   return (
     <label className={classes}>
       <input
         type="checkbox"
-        defaultChecked={checked}
+        defaultChecked={isChecked}
         disabled={disabled}
         ref={checkboxRef}
+        aria-checked={indeterminate ? "mixed" : isChecked}
         {...props}
       />
       {label}
