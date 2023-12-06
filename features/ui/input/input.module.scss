@@ -1,0 +1,112 @@
+@use "@styles/color";
+@use "@styles/font";
+@use "@styles/misc";
+@use "@styles/space";
+
+$input-padding: 10px 14px;
+
+.inputContainer {
+  position: relative;
+  user-select: none;
+  width: 100%;
+}
+
+.inputBox {
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+
+.inputField {
+  background: #fff;
+  border: 1px solid color.$gray-300;
+  border-radius: 8px;
+  color: color.$gray-900;
+  cursor: pointer;
+  display: flex;
+  font: font.$text-md-regular;
+  padding: $input-padding;
+  padding-left: 40px;
+  position: relative;
+  text-transform: capitalize;
+  width: 100%;
+
+  &Disabled {
+    background: color.$gray-50;
+    border: 1px solid color.$gray-300;
+    color: color.$gray-500;
+    cursor: default;
+
+    &:focus {
+      border: 1px solid color.$gray-300;
+      box-shadow: none;
+      outline: none;
+    }
+  }
+
+  &Error {
+    border: 1px solid color.$error-300;
+
+    &:focus {
+      box-shadow: 0 0 0 4px color.$error-100;
+      outline: none;
+    }
+  }
+
+  &:focus {
+    border: 1px solid color.$primary-300;
+    box-shadow: 0 0 0 4px color.$primary-100;
+    outline: none;
+  }
+}
+
+.inputFieldAlert:focus {
+  box-shadow:
+    0 0 0 4px #fee4e2,
+    0 1px 2px 0 rgb(16 24 40 / 5%);
+}
+
+.iconContainer {
+  left: 10px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.iconImage {
+  height: 20px;
+  width: 20px;
+}
+
+.alertIconContainer {
+  align-items: center;
+  display: flex;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.alertIconImage {
+  height: 20px;
+  margin-right: 5px;
+  width: 20px;
+}
+
+.labelText {
+  color: color.$gray-700;
+  font: font.$text-sm-medium;
+  margin-bottom: 5px;
+}
+
+.hintText {
+  color: color.$gray-500;
+  font: font.$text-sm-regular;
+  margin-top: 5px;
+}
+
+.errorText {
+  color: color.$error-500;
+  font: font.$text-sm-regular;
+  margin-top: 5px;
+}
