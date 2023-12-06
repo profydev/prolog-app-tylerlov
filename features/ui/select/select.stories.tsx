@@ -5,23 +5,38 @@ import { Select } from "./select";
 export default {
   title: "UI/Select",
   component: Select,
-  parameters: {
-    layout: "centered",
+  parameters: {},
+  argTypes: {
+    options: {
+      control: "array",
+    },
   },
 } as Meta<typeof Select>;
 
-const Template: StoryFn<typeof Select> = (args) => <Select {...args} />;
+const Template: StoryFn<typeof Select> = (args) => (
+  <div style={{ width: 320 }}>
+    <Select {...args} />
+  </div>
+);
 
 export const Default = Template.bind({});
 Default.args = {
   options: [
-    { value: "option1", label: "Olivia Rhye" },
-    { value: "option2", label: "Phoenix Baker" },
-    { value: "option3", label: "Lana Steiner" },
+    "Phoenix Baker",
+    "Olivia Rhye",
+    "Lana Steiner",
+    "Demi Wilkinson",
+    "Candice Wu",
+    "Natali Craig",
+    "Drew Cano",
   ],
-  icon: undefined,
-  label: "Label ",
-};
-Default.parameters = {
-  viewMode: "docs",
+  iconSrc: "/icons/user.svg",
+  label: "This is a label",
+  errorMessage: "This is a error message.",
+  hint: "This is a hint",
+  disabled: false,
+  showIcon: false,
+  showHint: false,
+  showError: false,
+  showLabel: false,
 };

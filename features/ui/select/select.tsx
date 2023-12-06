@@ -1,99 +1,119 @@
 import React, { useState } from "react";
-import ReactSelect, { components, OptionProps } from "react-select";
+import classNames from "classnames";
 import styles from "./select.module.scss";
+import Image from "next/image";
 
-const Option = (
-  props: OptionProps<{ value: string; label: string }, false>,
-) => {
-  const { isSelected, label } = props;
-  return (
-    <components.Option {...props}>
-      <div className={styles.checkmark}>{isSelected && <span>✔️</span>}</div>
-      {label}
-    </components.Option>
-  );
-};
-
-interface SelectProps {
-  options: { value: string; label: string }[];
-  icon?: JSX.Element;
+type SelectProps = {
+  options: string[];
+  disabled?: boolean;
+  iconSrc?: string;
   label?: string;
   hint?: string;
   errorMessage?: string;
-  className?: string;
-  isDisabled?: boolean;
-  isHintVisible?: boolean;
-  isErrorMessageVisible?: boolean;
-}
+  showIcon?: boolean;
+  showHint?: boolean;
+  showError?: boolean;
+  showLabel?: boolean;
+};
 
 export function Select({
   options,
-  icon,
+  iconSrc,
   label,
   hint,
   errorMessage,
-  className,
-  isDisabled = false,
-  isHintVisible = true,
-  isErrorMessageVisible = true,
+  disabled,
+  showIcon,
+  showHint,
+  showError,
+  showLabel,
 }: SelectProps) {
-  const [value, setValue] = useState<{ value: string; label: string } | null>(
-    null,
-  );
-
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState<string>();
   return (
-    <div className={className}>
-      <div className={styles.selectContainer}>
-        {label && <label className={styles.selectLabel}>{label}</label>}
-        <div className={styles.selectWrapper}>
-          <ReactSelect
-            options={options}
-            classNamePrefix="select"
-            isDisabled={isDisabled}
-            value={value}
-            onChange={setValue}
-            styles={{
-              control: (base) => ({
-                ...base,
-                width: 320,
-                height: 44,
-              }),
-            }}
-            components={{
-              Option,
-              IndicatorSeparator: () => null, // remove default separator
-              SingleValue: ({ children }) => (
-                <div className={styles.icon}>
-                  {icon && <div className={styles.icon}>{icon}</div>}
-                  {children}
-                </div>
-              ),
-            }}
-          />
-          {(hint || errorMessage) && (
-            <div className={styles.selectMessages}>
-              {hint && (
-                <span
-                  className={`${styles.hint} ${
-                    !isHintVisible ? styles.hidden : ""
-                  }`}
-                >
-                  {hint}
-                </span>
-              )}
-              {errorMessage && (
-                <span
-                  className={`${styles.error} ${
-                    !isErrorMessageVisible ? styles.hidden : ""
-                  }`}
-                >
-                  {errorMessage}
-                </span>
-              )}
-            </div>
+    <div
+      onClick={() => !disabled && setIsOpen(!isOpen)}
+      className={classNames(styles.selectContainer)}
+    >
+      {showLabel && label && (
+        <div className={classNames(styles.labelText)}>{label}</div>
+      )}
+      <div
+        className={classNames(styles.selectBox, isOpen && styles.selectBoxOpen)}
+      >
+        <button
+          className={classNames(
+            styles.selectButton,
+            errorMessage ? styles.selectButtonError : "",
+            selectedOption === "Select" ? styles.noSelection : "",
+            disabled ? styles.selectButtonDisabled : "",
           )}
+        >
+          <span className={classNames(styles.selectButtonContent)}>
+            {showIcon
+              ? iconSrc && (
+                  <Image
+                    className={classNames(styles.iconImage)}
+                    height={20}
+                    width={20}
+                    src={iconSrc}
+                    alt="icon"
+                  />
+                )
+              : null}
+            {selectedOption}
+          </span>
+          <Image
+            style={{ transform: !isOpen ? "" : "rotate(180deg)" }}
+            src="/icons/chevron-down.svg"
+            height={20}
+            width={20}
+            alt="arrow"
+          />
+        </button>
+        <div className={classNames(styles.optionList)}>
+          {options.map((item: string, index: number) => (
+            <span
+              key={index}
+              onClick={() => setSelectedOption(item)}
+              className={classNames(
+                styles.optionItem,
+                selectedOption === item && styles.optionItemSelected,
+              )}
+              data-value={item}
+            >
+              <div className={classNames(styles.optionItemContent)}>
+                {showIcon
+                  ? iconSrc && (
+                      <Image
+                        className={classNames(styles.iconImage)}
+                        height={20}
+                        width={20}
+                        src={iconSrc}
+                        alt="icon"
+                      />
+                    )
+                  : null}
+                {item}
+              </div>
+              {selectedOption === item && (
+                <Image
+                  src="/icons/check.svg"
+                  height={20}
+                  width={20}
+                  alt="check"
+                />
+              )}
+            </span>
+          ))}
         </div>
       </div>
+      {showHint && hint && !errorMessage && (
+        <p className={classNames(styles.hintText)}>{hint}</p>
+      )}
+      {showError && errorMessage && (
+        <p className={classNames(styles.errorText)}>{errorMessage}</p>
+      )}
     </div>
   );
 }

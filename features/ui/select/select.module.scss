@@ -1,74 +1,144 @@
 @use "@styles/color";
 @use "@styles/font";
 @use "@styles/space";
+@use "@styles/misc";
+
+$select-padding: 10px 14px;
 
 .selectContainer {
-  display: flex;
-  align-items: center;
+  position: relative;
+  user-select: none;
+  width: 100%;
 }
 
-.selectLabel {
-  margin-right: 10px; // adjust as needed
-}
-
-.selectWrapper {
+.selectBox {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  position: relative;
 }
 
-.selectMessages {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-}
-
-.selectControl {
-  display: flex;
-  width: 320px;
-  height: 44px;
-  justify-content: center;
+.selectButton {
+  position: relative;
   align-items: center;
-  flex-shrink: 0;
-  background-color: white;
+  background: #fff;
+  border: 1px solid color.$gray-300;
+  border-radius: 8px;
+  color: color.$gray-900;
+  cursor: pointer;
+  display: flex;
+  font: font.$text-md-regular;
+  justify-content: space-between;
+  padding: $select-padding;
+  text-transform: capitalize;
 
   &:focus {
-    box-shadow: 0 0 0 1px blue;
+    border: 1px solid color.$primary-300;
+    box-shadow: 0 0 0 4px color.$primary-100;
+    outline: none;
   }
 
-  &.selectControlIsDisabled {
-    border-radius: 8px;
-    border: 1px solid var(--gray-300, #d0d5dd);
-    background: var(--gray-50, #f9fafb);
+  &Disabled {
+    background: color.$gray-50;
+    border: 1px solid color.$gray-300;
+    color: color.$gray-500;
+    cursor: default;
 
-    /* Shadow/xs */
-    box-shadow: 0 1px 2px 0 rgb(16 24 40 / 5%);
-    color: var(--gray-500, #667085);
-
-    /* Text md/Normal */
-    font-family: Inter, sans-serif;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px; /* 150% */
+    &:focus {
+      border: 1px solid color.$gray-300;
+      box-shadow: none;
+      outline: none;
+    }
   }
 
-  &.selectControlIsFocused {
-    box-shadow: 0 0 0 1px blue;
-  }
-}
+  &Error {
+    border: 1px solid color.$error-300;
 
-.selectOptionIsSelected {
-  span {
-    color: green;
+    &:focus {
+      box-shadow: 0 0 0 4px color.$error-100;
+      outline: none;
+    }
   }
 }
 
-.hidden {
-  display: none;
+.selectButtonContent {
+  align-items: center;
+  display: flex;
 }
 
-.checkmark {
-  // Need to align this properly
-  padding-right: 50px;
+.noSelection {
+  color: color.$gray-500;
+}
+
+.iconImage {
+  margin-right: space.$s2;
+}
+
+.labelText {
+  color: color.$gray-700;
+  font: font.$text-sm-medium;
+  margin-bottom: 5px;
+}
+
+.hintText {
+  color: color.$gray-500;
+  font: font.$text-sm-regular;
+  margin-top: 5px;
+}
+
+.errorText {
+  color: color.$error-500;
+  font: font.$text-sm-regular;
+  margin-top: 5px;
+}
+
+.optionList {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow:
+    0 4px 6px -2px rgb(16 24 40 / 5%),
+    0 12px 16px -4px rgb(16 24 40 / 10%);
+  display: block;
+  left: 0;
+  margin-top: space.$s2;
+  max-height: 320px;
+  opacity: 0;
+  overflow: auto;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  visibility: hidden;
+  z-index: 2;
+}
+
+.selectBoxOpen .optionList {
+  opacity: 1;
+  pointer-events: all;
+  visibility: visible;
+}
+
+.optionItem {
+  align-items: center;
+  color: color.$gray-900;
+  cursor: pointer;
+  display: flex;
+  font: font.$text-md-regular;
+  justify-content: space-between;
+  padding: $select-padding;
+  position: relative;
+  text-transform: capitalize;
+
+  &:hover {
+    background-color: color.$primary-25;
+    cursor: pointer;
+  }
+}
+
+.optionItemContent {
+  align-items: center;
+  display: flex;
+}
+
+.optionItemSelected {
+  background-color: color.$primary-25;
 }
