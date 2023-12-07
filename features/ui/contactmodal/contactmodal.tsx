@@ -14,28 +14,30 @@ export function ContactModal({ onClose }: ContactModalProps) {
         src="/icons/mail.svg"
         alt="Mail Icon"
         className={styles.icon}
-        width={50}
-        height={50}
+        width={48}
+        height={48}
       />
-      <h2>Contact us via Email</h2>
+      <h2 className={styles.emailHeader}>Contact us via Email</h2>
       <p className={styles.infoText}>
-        Any questions? Send us an email at prolog@profy.dev. We usually answer
-        within 24 hours.
+        <p>Any questions? Send us an email at </p>
+        <p>prolog@profy.dev. We usually answer within 24</p>
+        <p>hours.</p>
       </p>
       <div className={styles.buttons}>
+        <Button
+          size={ButtonSize.md}
+          color={ButtonColor.secondary}
+          onClick={onClose}
+          className={styles.cancelButton}
+        >
+          Cancel
+        </Button>
         <Button
           size={ButtonSize.md}
           color={ButtonColor.primary}
           onClick={() => window.open("mailto:tyler@profydev.com")}
         >
           Open Email App
-        </Button>
-        <Button
-          size={ButtonSize.md}
-          color={ButtonColor.secondary}
-          onClick={onClose}
-        >
-          Cancel
         </Button>
       </div>
     </div>
